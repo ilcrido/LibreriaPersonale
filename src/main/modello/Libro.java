@@ -1,13 +1,21 @@
 package main.modello;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.Objects;
 
-public class Libro {
+public class Libro implements InterfacciaLibro{
+    @CsvBindByName(column = "Titolo")
     private String titolo;
+    @CsvBindByName(column = "Autore")
     private String autore;
+    @CsvBindByName(column = "ISBN")
     private String isbn;
+    @CsvBindByName(column = "Genere")
     private Genere genere;
+    @CsvBindByName(column = "Stato")
     private StatoLettura stato;
+    @CsvBindByName(column = "Valutazione")
     private int valutazione; //da 1 a 5
 
     public Libro(String titolo, String autore, String isbn, Genere genere) {
@@ -33,6 +41,7 @@ public class Libro {
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
+
     public String getAutore() {
         return autore;
     }
@@ -94,5 +103,10 @@ public class Libro {
     @Override
     public int hashCode() {
         return Objects.hashCode(isbn);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Libro{titolo='%s', autore='%s', genere='%s', stato='%s', valutazione='%s'}",titolo, autore, genere, stato, valutazione);
     }
 }
