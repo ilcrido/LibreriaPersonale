@@ -1,7 +1,7 @@
-package main.strategy;
+package strategy;
 
-import main.modello.Libro;
-import main.modello.StatoLettura;
+import modello.Libro;
+import modello.StatoLettura;
 
 import java.util.ArrayList;
 import java.util.List;

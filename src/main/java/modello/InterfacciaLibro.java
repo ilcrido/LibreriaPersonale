@@ -1,4 +1,4 @@
-package main.modello;
+package modello;
 
 public interface InterfacciaLibro {
 

@@ -1,8 +1,6 @@
-package main;
+package observer;
 
-import main.modello.Libro;
-import main.observer.Observer;
-import main.observer.Subject;
+import modello.Libro;
 
 import java.util.ArrayList;
 import java.util.List;

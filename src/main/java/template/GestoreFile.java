@@ -1,6 +1,6 @@
-package main.template;
+package template;
 
-import main.modello.Libro;
+import modello.Libro;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,7 +13,7 @@ public abstract class GestoreFile {
         try{
             String datiFormattati = formattaDati(libri);
             scriviSuFile(datiFormattati,percorso);
-            System.out.println("Libreria salvata in: "+percorso);
+            System.out.println("observer.Libreria salvata in: "+percorso);
         }catch (IOException e){
             System.err.println("Errore nel salvataggio della libreria: "+e.getMessage());
         }
@@ -23,7 +23,7 @@ public abstract class GestoreFile {
         try {
             String datiGrezzi = leggiDaFile(percorso);
             List<Libro> libri = estraiLibri(datiGrezzi);
-            System.out.println("Libreria caricata da: " + percorso);
+            System.out.println("observer.Libreria caricata da: " + percorso);
             return libri;
         }catch(IOException e){
             System.err.println("Errore nel caricare il file: "+e.getMessage());

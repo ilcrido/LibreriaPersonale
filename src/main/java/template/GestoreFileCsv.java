@@ -1,10 +1,10 @@
-package main.template;
+package template;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import main.modello.Libro;
+import modello.Libro;
 
 import java.io.StringReader;
 import java.io.StringWriter;

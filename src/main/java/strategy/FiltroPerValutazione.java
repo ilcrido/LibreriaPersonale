@@ -1,6 +1,6 @@
-package main.strategy;
+package strategy;
 
-import main.modello.Libro;
+import modello.Libro;
 
 import java.util.ArrayList;
 import java.util.List;

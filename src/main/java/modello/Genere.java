@@ -1,4 +1,4 @@
-package main.modello;
+package modello;
 
 public enum Genere {
     FANTASY, HORROR, AZIONE, FANTASCIENZA, ROMANZO, GIALLO, BIOGRAFIA,  AUTOBIOGRAFIA

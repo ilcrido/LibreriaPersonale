@@ -1,7 +1,7 @@
-package main.command;
+package command;
 
-import main.Libreria;
-import main.modello.Libro;
+import modello.Libro;
+import observer.Libreria;
 
 public class RimuoviLibro implements Command{
 

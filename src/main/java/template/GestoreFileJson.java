@@ -1,9 +1,9 @@
-package main.template;
+package template;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import main.modello.Libro;
+import modello.Libro;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
