@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 import java.util.Objects;
 
-public class Libro implements InterfacciaLibro{
+public class Libro{
     @CsvBindByName(column = "Titolo")
     private String titolo;
     @CsvBindByName(column = "Autore")
@@ -18,7 +18,14 @@ public class Libro implements InterfacciaLibro{
     @CsvBindByName(column = "Valutazione")
     private int valutazione; //da 1 a 5
 
+    public Libro(){
+        //opneCSV usa questo costruttore e poi i metodi setter
+    }
+
     public Libro(String titolo, String autore, String isbn, Genere genere) {
+        if(!isbnValido(isbn)){
+            throw new IllegalArgumentException("ISBN deve essere di 13 cifre numeriche");
+        }
         this.titolo = titolo;
         this.autore = autore;
         this.isbn = isbn;
@@ -26,6 +33,9 @@ public class Libro implements InterfacciaLibro{
     }
 
     public Libro(String titolo, String autore, String isbn, Genere genere, StatoLettura stato, int valutazione) {
+        if(!isbnValido(isbn)){
+            throw new IllegalArgumentException("ISBN deve essere di 13 cifre numeriche");
+        }
         this.titolo = titolo;
         this.autore = autore;
         this.isbn = isbn;
@@ -55,6 +65,9 @@ public class Libro implements InterfacciaLibro{
     }
 
     public void setIsbn(String isbn) {
+        if(!isbnValido(isbn)){
+            throw new IllegalArgumentException("ISBN deve essere di 13 cifre numeriche");
+        }
         this.isbn = isbn;
     }
 
@@ -67,7 +80,9 @@ public class Libro implements InterfacciaLibro{
     }
 
     public String getGenereName() {
-        if (genere == null) return null;
+        if (genere == null) {
+            return null;
+        }
         return genere.name();
     }
 
@@ -87,17 +102,16 @@ public class Libro implements InterfacciaLibro{
         this.stato = stato;
     }
 
+    private boolean isbnValido(String isbn){
+        return isbn != null && isbn.matches("\\d{13}");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Libro libro = (Libro) o;
-        return titolo.equals(libro.titolo) &&
-                isbn.equals(libro.isbn) &&
-                autore.equals(libro.autore) &&
-                genere == libro.genere &&
-                stato == libro.stato &&
-                valutazione == libro.valutazione;
+        return isbn.equals(libro.isbn);
     }
 
     @Override

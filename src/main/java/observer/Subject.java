@@ -2,8 +2,6 @@ package observer;
 
 import modello.Libro;
 
-import java.util.List;
-
 public interface Subject {
 
     void aggiungiObserver(Observer observer);
@@ -15,7 +13,5 @@ public interface Subject {
     void notificaLibroRimosso(Libro libro);
 
     void notificaLibroModificato(Libro libro);
-
-    void notificaLibriAggiornati(List<Libro> libri);
 
 }

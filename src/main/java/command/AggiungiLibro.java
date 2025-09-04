@@ -7,6 +7,7 @@ public class AggiungiLibro implements Command {
 
     private Libreria libreria;
     private Libro libro;
+    private boolean eseguito = false;
 
     public AggiungiLibro(Libreria libreria, Libro libro) {
         this.libreria = libreria;
@@ -15,6 +16,24 @@ public class AggiungiLibro implements Command {
 
     @Override
     public void execute() {
-        libreria.aggiungiLibro(libro);
+        if(!eseguito) {
+            boolean aggiunto = libreria.aggiungiLibro(libro);
+            if(aggiunto) {
+                eseguito = true;
+            }
+        }
+    }
+
+    @Override
+    public void undo() {
+        if(eseguito) {
+            libreria.rimuoviLibro(libro);
+            eseguito = false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Aggiunto: "+libro.getTitolo();
     }
 }

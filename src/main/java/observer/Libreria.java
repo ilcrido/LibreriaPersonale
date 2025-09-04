@@ -7,20 +7,26 @@ import java.util.List;
 
 public class Libreria implements Subject {
 
-    private List<Libro> libri;
-
     private List<Observer> observers;
+    private List<Libro> libri;
 
     public Libreria(){
         this.libri = new ArrayList<>();
         this.observers = new ArrayList<>();
     }
 
-    public void aggiungiLibro(Libro libro){
-        if(libro != null && !libri.contains(libro)){
-            libri.add(libro);
-            notificaLibroAggiunto(libro);
+    public boolean aggiungiLibro(Libro libro){
+        if(libro != null){
+            if(trovaLibroPerIsbn(libro.getIsbn()) != null){
+                throw new IllegalArgumentException("Esiste già un libro con questo ISBN: "+libro.getIsbn());
+            }
+            if(!libri.contains(libro)){
+                libri.add(libro);
+                notificaLibroAggiunto(libro);
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean rimuoviLibro(Libro libro){
@@ -94,7 +100,7 @@ public class Libreria implements Subject {
     }
 
     public void rimuoviObserver(Observer observer){
-        if(observer != null && !observers.contains(observer)){
+        if(observer != null && observers.contains(observer)){
             observers.remove(observer);
         }
     }
@@ -114,12 +120,6 @@ public class Libreria implements Subject {
     public void notificaLibroModificato(Libro libro){
         for(Observer observer : observers){
             observer.libroModificato(libro);
-        }
-    }
-
-    public void notificaLibriAggiornati(List<Libro> libri){
-        for(Observer observer : observers){
-            observer.libriAggiornati(libri);
         }
     }
 
